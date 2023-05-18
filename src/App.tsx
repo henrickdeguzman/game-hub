@@ -43,7 +43,7 @@ const App = () => {
           />
         </GridItem>
       </Show>
-      <GridItem area="main" paddingX={5}>
+      <GridItem area="main" paddingX={5} pb={5}>
         <GameHeading gameQuery={gameQuery} />
         <Flex my={5}>
           <Box mr={4}>

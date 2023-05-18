@@ -1,26 +1,31 @@
-import bullsEye from "../assets/bulls-eye.webp";
-import thumbsUp from "../assets/thumbs-up.webp";
-import meh from "../assets/meh.webp";
-import { Image, ImageProps } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
+import { BsStar, BsStarFill } from "react-icons/bs";
 
 interface Props {
   rating: number;
 }
 
 const Emoji = ({ rating }: Props) => {
-  if (rating < 3) return null;
+  const fillStar = [];
+  const star = [];
 
-  const emojiMap: { [key: number]: ImageProps } = {
-    3: { src: meh, alt: "meh", boxSize: "25px" },
-    4: {
-      src: thumbsUp,
-      alt: "recommended",
-      boxSize: "30px",
-    },
-    5: { src: bullsEye, alt: "exceptional", boxSize: "30px" },
-  };
+  for (let i = 0; i < rating; i++) {
+    fillStar.push(i);
+  }
+  for (let i = 5; i > rating; i--) {
+    star.push(i);
+  }
 
-  return <Image {...emojiMap[rating]} mt={1} />;
+  return (
+    <HStack>
+      {fillStar.map((star) => (
+        <Icon key={star} as={BsStarFill} color="yellow.300" boxSize="25px" />
+      ))}
+      {star.map((star) => (
+        <Icon key={star} as={BsStar} color="yellow.300" boxSize="25px" />
+      ))}
+    </HStack>
+  );
 };
 
 export default Emoji;
